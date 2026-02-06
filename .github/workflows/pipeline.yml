@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: cd backend && npm install && cd ../frontend && npm install
       - name: Build project
-        run: cd backend && npm run build
+        run: cd backend && npm run build:ui
       - name: Run tests
         run: cd backend && npm run test
       - name: Trigger deployment
