@@ -14,8 +14,6 @@ const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false)
 
-logger.info('connecting to', config.MONGODB_URI)
-
 mongoose.connect(config.MONGODB_URI)
     .then(() => {
         logger.info('connected to MongoDB')
@@ -32,6 +30,14 @@ app.use('/api/comments', commentsRouter)
 app.use('/api/scores', scoresRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+
+app.get('/api/version', (req, res) => {
+  res.send('1') // change this string to ensure a new version deployed
+})
+
+app.get('/api/health', (req, res) => {
+  res.send('ok')
+})
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
